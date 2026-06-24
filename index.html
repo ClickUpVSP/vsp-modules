@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://app.clickup-embedded-html-us-staging.com/ -->
+<html lang="en-US" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--<base href="/">--><base href="."><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><style>body{margin:0;padding:0;overflow:auto;font-family:monospace;font-size:14px;line-height:150%;color:#7c828d}iframe{border-width:0;display:block;min-width:100%;box-sizing:border-box}html:has(.cu-embedded-html--link-preview){overflow:clip}.cu-embedded-html--link-preview .twitter-tweet-rendered{margin:0 auto!important}.cu-embedded-html--link-preview iframe{display:block;margin:0 auto;visibility:inherit}
+</style><style>.cu-embedded-html__container[_ngcontent-ng-c2868595144]{display:flow-root;width:100%}</style></head><body data-git-sha="f6708a52431abc8d6fe511dd568431d45c6e7e9c" data-build-version="4.13.0-staging.82" data-build-time="2026-06-23T19:43:31.436Z"><cu-root ng-version="21.2.6" _nghost-ng-c2868595144=""><div _ngcontent-ng-c2868595144="" class="cu-embedded-html__container">
+
+
+<!-- skill:chrome -->
+<style>
+/* Credit line — bottom-right */
+.design-ui-credit {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  font: 11px/1 system-ui, sans-serif;
+  color: rgba(128,128,128,0.5);
+  pointer-events: none;
+  z-index: 2147483647;
+  transition: opacity 0.4s ease;
+  user-select: none;
+  letter-spacing: 0.02em;
+}
+
+/* Hide chrome on touch devices */
+@media (hover: none) {
+  .design-ui-credit { display: none; }
+}
+
+/* Print fixes */
+@media print {
+  * {
+    transition: none !important;
+    animation: none !important;
+    box-shadow: none !important;
+  }
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .design-ui-credit { display: none !important; }
+}
+
+</style>
+<script data-activated="true">
+(function () {
+    // Chrome UI (hover devices only): credit badge with idle-fade.
+    // Deferred until body exists since the script may run in <head>.
+    function initChromeUI() {
+        if (!matchMedia('(hover: hover)').matches) return;
+
+        var credit = document.createElement('div');
+        credit.className = 'design-ui-credit';
+        credit.setAttribute('aria-hidden', 'true');
+        credit.innerHTML = '\u{1F49C} by ClickUp Brain';
+        document.body.appendChild(credit);
+
+        var timer = null;
+        var fade = function (out) { credit.style.opacity = out ? '0' : ''; };
+        fade(true);
+        var show = function () {
+            fade(false);
+            clearTimeout(timer);
+            timer = setTimeout(function () { fade(true); }, 3000);
+        };
+        document.addEventListener('mousemove', show);
+        show();
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initChromeUI);
+    } else {
+        initChromeUI();
+    }
+})();
+
+</script>
+<!-- /skill:chrome -->
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Module 1: Program Foundations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&family=Sometype+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--purple:#7B68EE;--purple-deep:#6647F0;--purple-soft:#F0EDFF;--purple-wash:#E8E3FF;
+--text:#292D34;--text-muted:#5a5e66;--text-soft:#7c8089;
+--bg:#FAFBFC;--surface:#FFFFFF;--border:#E8E9EC;--border-strong:#D4D6DB;
+--success:#2ECC71;--success-soft:#EAFAF1;--error:#E74C3C;--error-soft:#FDEDEC;
+--warning-bg:#FFF9E6;--warning-border:#F5DF8E;
+--radius:16px;--radius-sm:12px;--radius-lg:24px;
+--ease-out:cubic-bezier(0.16,1,0.3,1);
+--gradient:linear-gradient(135deg,#4A9FF5,#7B68EE,#E8756A);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif;line-height:1.15;color:var(--text);text-wrap:balance}
+p{text-wrap:pretty}
+button{font-family:inherit;cursor:pointer}
+
+/* APP SHELL */
+.app{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:280px;background:#F5F4F9;border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;overflow-y:auto}
+.sidebar-header{padding:28px 24px 20px}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.brand-mark{width:40px;height:40px;border-radius:12px;background:var(--gradient);display:grid;place-items:center;color:#fff;font-weight:800;font-size:16px;font-family:'Plus Jakarta Sans',sans-serif}
+.brand-name{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1rem;color:var(--text)}
+.module-label{font-family:'Sometype Mono',monospace;font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-soft);margin-top:2px}
+
+/* NAV */
+.lesson-nav{flex:1;padding:0 12px;display:flex;flex-direction:column;gap:2px}
+.nav-item{border:0;background:transparent;width:100%;padding:10px 12px;border-radius:var(--radius-sm);display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:center;text-align:left;color:var(--text-muted);transition:background 150ms var(--ease-out),color 150ms var(--ease-out);position:relative}
+.nav-item:hover:not(.locked):not(.active){background:#EEEDFA;color:var(--text)}
+.nav-item:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
+.nav-item.active{background:var(--purple-soft);color:var(--purple-deep)}
+.nav-item.completed{color:var(--text)}
+.nav-item.locked{opacity:0.5;cursor:not-allowed}
+.nav-item.locked:focus{outline:none}
+.nav-icon{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:0.8rem;font-weight:600;flex-shrink:0}
+.nav-icon.num{background:#E8E9EC;color:var(--text-soft)}
+.active .nav-icon.num{background:var(--purple);color:#fff}
+.nav-icon.check{background:var(--success);color:#fff;font-size:0.85rem}
+.nav-icon.lock{background:#E8E9EC;color:var(--text-soft);font-size:0.7rem}
+.nav-text{font-size:0.875rem;font-weight:500;line-height:1.3}
+.nav-divider{padding:16px 12px 6px;font-family:'Sometype Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-soft)}
+.nav-tooltip{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--text);color:#fff;font-size:0.75rem;padding:6px 10px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 150ms}
+.nav-item.locked:hover .nav-tooltip{opacity:1}
+
+/* PROGRESS */
+.sidebar-footer{padding:16px 24px 20px;border-top:1px solid var(--border)}
+.progress-meta{display:flex;justify-content:space-between;font-size:0.8rem;color:var(--text-muted);margin-bottom:8px}
+.progress-meta strong{color:var(--text);font-weight:700}
+.progress-bar{height:8px;border-radius:99px;background:#E8E9EC;overflow:hidden}
+.progress-fill{height:100%;border-radius:inherit;background:var(--gradient);width:0%;transition:width 400ms var(--ease-out)}
+.reset-link{display:inline-block;margin-top:10px;font-size:0.75rem;color:var(--text-soft);text-decoration:underline;cursor:pointer;border:0;background:0}
+.reset-link:hover{color:var(--error)}
+
+/* HAMBURGER */
+.hamburger{display:none;position:fixed;top:16px;left:16px;z-index:200;width:44px;height:44px;border-radius:12px;border:1px solid var(--border);background:var(--surface);place-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.hamburger span{display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:transform 200ms}
+.hamburger span+span{margin-top:5px}
+.scrim{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:90}
+
+/* MAIN */
+.main{grid-column:2;padding:48px clamp(20px,4vw,56px) 80px;min-width:0}
+.content{max-width:720px;margin:0 auto}
+
+/* LESSON */
+.lesson{display:none;animation:fadeUp 350ms var(--ease-out)}
+.lesson.visible{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.eyebrow{font-family:'Sometype Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--purple-deep);margin-bottom:8px}
+.lesson-title{font-size:clamp(1.85rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-0.04em;margin-bottom:12px}
+.lede{font-size:1.1rem;line-height:1.65;color:var(--text-muted);margin-bottom:32px;max-width:60ch}
+
+/* SCENARIO */
+.scenario{background:#F9F8FE;border:1px solid #E8E3FF;border-left:4px solid;border-image:var(--gradient) 1;border-radius:0 var(--radius) var(--radius) 0;padding:24px 28px;margin-bottom:36px}
+.scenario-label{font-family:'Sometype Mono',monospace;font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--purple);margin-bottom:6px}
+.scenario p{color:var(--text-muted);margin:0}
+
+/* SECTION TEXT */
+.section{margin-top:32px}
+.section h3{font-size:1.3rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:12px}
+.section h4{font-size:1rem;font-weight:700;margin-top:24px;margin-bottom:8px}
+.section p{margin-bottom:12px;max-width:65ch}
+.section p:last-child{margin-bottom:0}
+.section ul,.section ol{padding-left:20px;margin-bottom:12px}
+.section li{margin-bottom:6px}
+.section strong{font-weight:600}
+
+/* CALLOUT */
+.callout{background:var(--warning-bg);border:1px solid var(--warning-border);border-radius:var(--radius);padding:16px 20px;margin:20px 0}
+.callout p{margin:0}
+
+/* TABLES */
+.table-wrap{overflow-x:auto;margin:20px 0}
+.table-wrap table{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;font-size:0.92rem;font-variant-numeric:tabular-nums}
+.table-wrap th,.table-wrap td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--border)}
+.table-wrap th{background:#F5F4F9;font-family:'Sometype Mono',monospace;font-size:0.72rem;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-soft);font-weight:500}
+.table-wrap tr:last-child td{border-bottom:0}
+
+/* REVEALS */
+.reveal-group{display:flex;flex-direction:column;gap:8px;margin:20px 0}
+.reveal{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);overflow:hidden}
+.reveal-toggle{width:100%;border:0;background:0;padding:16px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;text-align:left;color:var(--text);font-weight:500;line-height:1.45}
+.reveal-toggle:focus-visible{outline:2px solid var(--purple);outline-offset:-2px;border-radius:var(--radius)}
+.chevron{font-size:1.2rem;color:var(--text-soft);transition:transform 250ms var(--ease-out);flex-shrink:0;margin-top:2px}
+.reveal.open .chevron{transform:rotate(180deg)}
+.reveal-body{max-height:0;overflow:hidden;transition:max-height 350ms var(--ease-out)}
+.reveal.open .reveal-body{max-height:600px}
+.reveal-content{padding:0 20px 16px;color:var(--text-muted);line-height:1.6}
+
+/* CHECKBOXES / TAKEAWAYS */
+.checkbox-group{display:flex;flex-direction:column;gap:8px;margin:16px 0}
+.cb-item{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;padding:14px 16px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface);cursor:pointer;transition:background 150ms,border-color 150ms}
+.cb-item:hover{border-color:var(--border-strong)}
+.cb-item:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
+.cb-item.checked{background:var(--purple-soft);border-color:#D6D0F9}
+.cb-box{width:28px;height:28px;border-radius:10px;border:2px solid var(--border-strong);display:grid;place-items:center;color:transparent;transition:background 150ms,border-color 150ms,color 150ms}
+.cb-item.checked .cb-box{background:var(--purple);border-color:var(--purple);color:#fff}
+.cb-label{font-size:0.95rem;line-height:1.5;padding-top:3px}
+
+/* QUIZ */
+.quiz-block{margin:24px 0}
+.quiz-q{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:12px}
+.quiz-q h4{font-size:0.95rem;font-weight:600;margin-bottom:14px;line-height:1.4}
+.quiz-options{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{width:100%;border:1px solid var(--border);background:#FAFBFC;border-radius:var(--radius-sm);padding:12px 16px;display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;text-align:left;font-size:0.92rem;line-height:1.45;color:var(--text);transition:border-color 150ms,background 150ms,transform 100ms}
+.quiz-opt:hover:not(.locked){border-color:var(--border-strong);transform:translateY(-1px)}
+.quiz-opt:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
+.quiz-opt .dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--border-strong);display:grid;place-items:center;transition:border-color 150ms,background 150ms}
+.quiz-opt .dot::after{content:'';width:10px;height:10px;border-radius:50%;transition:background 150ms}
+.quiz-opt.correct{background:var(--success-soft);border-color:#A3E4C1}
+.quiz-opt.correct .dot{border-color:var(--success)}
+.quiz-opt.correct .dot::after{background:var(--success)}
+.quiz-opt.incorrect{background:var(--error-soft);border-color:#F5B7B1}
+.quiz-opt.incorrect .dot{border-color:var(--error)}
+.quiz-opt.incorrect .dot::after{background:var(--error)}
+.quiz-opt.locked{pointer-events:none}
+.quiz-feedback{margin-top:10px;padding:10px 14px;border-radius:var(--radius-sm);font-size:0.88rem;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.good{background:var(--success-soft);color:#1B7A42}
+.quiz-feedback.bad{background:var(--error-soft);color:#922B21}
+
+/* GATE HINT */
+.gate-hint{margin-top:24px;padding:12px 16px;border-radius:var(--radius-sm);background:#F5F4F9;border:1px solid #E8E3FF;font-size:0.88rem;color:var(--purple-deep);display:none}
+.gate-hint.show{display:block}
+
+/* NAV BUTTONS */
+.nav-actions{display:flex;justify-content:space-between;gap:12px;margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}
+.nav-btn{border:0;border-radius:var(--radius-sm);padding:14px 20px;font-size:0.95rem;font-weight:600;transition:transform 120ms,opacity 120ms}
+.nav-btn:hover:not(:disabled){transform:translateY(-1px)}
+.nav-btn:disabled{opacity:0.4;cursor:not-allowed;transform:none}
+.nav-btn.secondary{background:#EEEDFA;color:var(--purple-deep)}
+.nav-btn.primary{background:var(--purple);color:#fff;box-shadow:0 4px 12px rgba(123,104,238,0.25)}
+.nav-btn:focus-visible{outline:2px solid var(--purple);outline-offset:3px}
+
+/* KNOWLEDGE CHECK EXTRAS */
+.kc-scorebar{background:#F5F4F9;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;gap:12px;font-size:0.9rem;font-weight:500}
+.kc-scorebar .count{font-weight:700;color:var(--purple-deep)}
+.kc-result{padding:24px;border-radius:var(--radius-lg);text-align:center;margin-top:24px;display:none}
+.kc-result.pass{background:var(--success-soft);border:1px solid #A3E4C1}
+.kc-result.fail{background:var(--error-soft);border:1px solid #F5B7B1}
+.kc-result h3{margin-bottom:8px}
+.kc-result p{color:var(--text-muted);margin-bottom:16px}
+.kc-result button{border:0;padding:12px 20px;border-radius:var(--radius-sm);font-weight:600;font-size:0.9rem;cursor:pointer}
+.kc-result.pass button{background:var(--success);color:#fff}
+.kc-result.fail button{background:var(--error);color:#fff}
+
+/* RESPONSIVE */
+@media(max-width:899px){
+.app{grid-template-columns:1fr}
+.sidebar{transform:translateX(-100%);transition:transform 300ms var(--ease-out)}
+.sidebar.open{transform:translateX(0)}
+.hamburger{display:grid}
+.scrim.open{display:block}
+.main{grid-column:1;padding-top:72px}
+.nav-actions{flex-direction:column-reverse}
+.nav-btn{width:100%}
+}
+
+/* REDUCED MOTION */
+@media(prefers-reduced-motion:reduce){
+*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
+}
+</style>
+
+
+<button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+<div class="scrim" id="scrim"></div>
+
+<div class="app">
+<aside class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<div class="brand">
+<div class="brand-mark">✓</div>
+<div class="brand-name">MSP Program</div>
+</div>
+<div class="module-label">Module 1 · Program Foundations</div>
+</div>
+<nav class="lesson-nav" id="lessonNav"><button class="nav-item active" data-nav="1"><div class="nav-icon num">1</div><span class="nav-text">Welcome to the MSP Program</span></button><button class="nav-item completed" data-nav="2"><div class="nav-icon check">✓</div><span class="nav-text">What You're Selling</span></button><button class="nav-item completed" data-nav="3"><div class="nav-icon check">✓</div><span class="nav-text">Revenue Streams</span></button><button class="nav-item " data-nav="4"><div class="nav-icon num">4</div><span class="nav-text">How Deals Work</span></button><button class="nav-item locked" data-nav="5" tabindex="-1"><div class="nav-icon lock">🔒</div><span class="nav-text">Your Role vs. ClickUp's Role</span><span class="nav-tooltip">Complete the previous lesson to unlock</span></button><button class="nav-item locked" data-nav="6" tabindex="-1"><div class="nav-icon lock">🔒</div><span class="nav-text">Protecting Your Work</span><span class="nav-tooltip">Complete the previous lesson to unlock</span></button><button class="nav-item locked" data-nav="7" tabindex="-1"><div class="nav-icon lock">🔒</div><span class="nav-text">Compliance &amp; Staying Certified</span><span class="nav-tooltip">Complete the previous lesson to unlock</span></button><button class="nav-item locked" data-nav="8" tabindex="-1"><div class="nav-icon lock">🔒</div><span class="nav-text">What Comes Next</span><span class="nav-tooltip">Complete the previous lesson to unlock</span></button><div class="nav-divider">Assessment</div><button class="nav-item locked" data-nav="9" tabindex="-1"><div class="nav-icon lock">🔒</div><span class="nav-text">Knowledge Check</span><span class="nav-tooltip">Complete the previous lesson to unlock</span></button></nav>
+<div class="sidebar-footer">
+<div class="progress-meta"><span><strong id="pCount">3</strong> of 9 complete</span></div>
+<div class="progress-bar"><div class="progress-fill" id="pFill" style="width: 33%;"></div></div>
+<button class="reset-link" id="resetBtn">Reset progress</button>
+</div>
+</aside>
+
+<main class="main"><div class="content" id="root"><article class="lesson visible"><div class="eyebrow">Lesson 1</div><h1 class="lesson-title">Welcome to the MSP Program</h1><p class="lede">This is the start. Not another vague partner badge, but an actual path to packaging ClickUp into outcomes companies will pay for.</p><section class="scenario"><div class="scenario-label">Why this matters</div><p>Businesses don't fail because they picked the wrong tool. They fail because a tool never fixes a broken process. That gap is the opportunity, and MSPs close it.</p></section><div class="section"><p>Every company on earth is trying to figure out AI right now. They buy platforms, spin up agents, watch demos, then stall. The gap between <em>this is possible</em> and <em>this is working</em> needs someone who can actually diagnose, implement, and own the outcome.</p>
+<h3>What is an MSP?</h3>
+<p>MSP stands for Managed Services Provider. You diagnose the pain, build and sell the system that solves it, implement that system, then grow a relationship on top of it. That stack is what makes you indispensable.</p>
+<p>ClickUp is betting on MSPs because ClickUp cannot sit in every SMB office and turn intention into execution. You can.</p>
+<h3>Why now</h3>
+<p>There are <strong>33 million</strong> SMBs in the US alone, and fewer than 1% of the service providers selling into them have real AI delivery capability. Demand is absurd, supply is tiny, and the early mover window is open right now.</p>
+<p>You're creating a new professional category: the operator who packages AI into working business outcomes for teams that can't do it themselves.</p>
+<h3>The model</h3>
+<p>As an MSP, you resell ClickUp as part of a complete solution. You secure Enterprise Platinum at your partner rate, build it for the client, package it with your services, and deliver the whole thing end to end. The client gets admin access. You keep your IP, your service revenue, and a recurring share of the subscription economics.</p>
+<h3>What the program delivers</h3>
+<ul>
+<li>20% recurring rev share on every workspace you resell and build, every year they renew</li>
+<li>100% of your services revenue on top</li>
+<li>A solution that is yours: your builds, your IP, your portfolio</li>
+<li>A defined service offer with real pricing and an SLA you control</li>
+<li>A path to a scalable business that compounds</li>
+</ul>
+<h3>How do you get there?</h3>
+<p>Four modules, each stacking on the last. By the end of Module 4, you will have pitched, received feedback, passed certification, and gone live.</p></div><div class="section"><h3>Key Takeaways</h3><div class="checkbox-group" id="cbGroup"><button class="cb-item checked" data-cb="0" role="checkbox" aria-checked="true"><div class="cb-box">✓</div><div class="cb-label">The real opportunity is owning outcomes, not selling software.</div></button><button class="cb-item checked" data-cb="1" role="checkbox" aria-checked="true"><div class="cb-box">✓</div><div class="cb-label">The early mover edge is real but won't stay open forever.</div></button><button class="cb-item checked" data-cb="2" role="checkbox" aria-checked="true"><div class="cb-box">✓</div><div class="cb-label">This program takes me from knowing ClickUp to selling and supporting it as a business.</div></button></div></div><div class="gate-hint" id="gateHint"></div><div class="nav-actions"><button class="nav-btn secondary" disabled="" id="prevBtn">← Previous</button><button class="nav-btn primary" id="nextBtn">Next: What You're Selling →</button></div></article></div></main>
+</div>
+
+<script data-activated="true">
+(function(){
+"use strict";
+
+const STORAGE_KEY = 'msp-mod1-progress-v1';
+let storageAvailable = true;
+try { localStorage.setItem('__test','1'); localStorage.removeItem('__test'); } catch(e){ storageAvailable = false; }
+
+const TOTAL_STEPS = 9;
+const KC_PASS = 7;
+
+const LESSONS = [
+{id:1,title:'Welcome to the MSP Program',eyebrow:'Lesson 1',hasChecks:true,hasMicro:false},
+{id:2,title:"What You're Selling",eyebrow:'Lesson 2',hasChecks:true,hasMicro:true},
+{id:3,title:'Revenue Streams',eyebrow:'Lesson 3',hasChecks:true,hasMicro:true},
+{id:4,title:'How Deals Work',eyebrow:'Lesson 4',hasChecks:true,hasMicro:true},
+{id:5,title:"Your Role vs. ClickUp's Role",eyebrow:'Lesson 5',hasChecks:true,hasMicro:true},
+{id:6,title:'Protecting Your Work',eyebrow:'Lesson 6',hasChecks:true,hasMicro:true},
+{id:7,title:'Compliance & Staying Certified',eyebrow:'Lesson 7',hasChecks:true,hasMicro:true},
+{id:8,title:'What Comes Next',eyebrow:'Lesson 8',hasChecks:false,hasMicro:false},
+{id:9,title:'Knowledge Check',eyebrow:'Final Assessment',isKC:true}
+];
+
+// STATE
+let state = {
+current: 1,
+frontier: 1,
+completed: [],
+lessonData: {}
+};
+
+function saveState(){
+if(!storageAvailable) return;
+try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+}
+function loadState(){
+if(!storageAvailable) return;
+try{
+const raw = localStorage.getItem(STORAGE_KEY);
+if(raw){ const parsed = JSON.parse(raw); if(parsed && parsed.frontier) state = parsed; }
+}catch(e){}
+}
+function resetState(){
+state = {current:1,frontier:1,completed:[],lessonData:{}};
+if(storageAvailable){ try{localStorage.removeItem(STORAGE_KEY);}catch(e){} }
+render();
+}
+
+function getLessonData(id){
+if(!state.lessonData[id]) state.lessonData[id] = {checks:[],microPassed:[]};
+return state.lessonData[id];
+}
+
+// CONTENT DATA
+const CONTENT = {
+1:{
+lede:"This is the start. Not another vague partner badge, but an actual path to packaging ClickUp into outcomes companies will pay for.",
+scenario:{label:"Why this matters",text:"Businesses don't fail because they picked the wrong tool. They fail because a tool never fixes a broken process. That gap is the opportunity, and MSPs close it."},
+body:`<p>Every company on earth is trying to figure out AI right now. They buy platforms, spin up agents, watch demos, then stall. The gap between <em>this is possible</em> and <em>this is working</em> needs someone who can actually diagnose, implement, and own the outcome.</p>
+<h3>What is an MSP?</h3>
+<p>MSP stands for Managed Services Provider. You diagnose the pain, build and sell the system that solves it, implement that system, then grow a relationship on top of it. That stack is what makes you indispensable.</p>
+<p>ClickUp is betting on MSPs because ClickUp cannot sit in every SMB office and turn intention into execution. You can.</p>
+<h3>Why now</h3>
+<p>There are <strong>33 million</strong> SMBs in the US alone, and fewer than 1% of the service providers selling into them have real AI delivery capability. Demand is absurd, supply is tiny, and the early mover window is open right now.</p>
+<p>You're creating a new professional category: the operator who packages AI into working business outcomes for teams that can't do it themselves.</p>
+<h3>The model</h3>
+<p>As an MSP, you resell ClickUp as part of a complete solution. You secure Enterprise Platinum at your partner rate, build it for the client, package it with your services, and deliver the whole thing end to end. The client gets admin access. You keep your IP, your service revenue, and a recurring share of the subscription economics.</p>
+<h3>What the program delivers</h3>
+<ul>
+<li>20% recurring rev share on every workspace you resell and build, every year they renew</li>
+<li>100% of your services revenue on top</li>
+<li>A solution that is yours: your builds, your IP, your portfolio</li>
+<li>A defined service offer with real pricing and an SLA you control</li>
+<li>A path to a scalable business that compounds</li>
+</ul>
+<h3>How do you get there?</h3>
+<p>Four modules, each stacking on the last. By the end of Module 4, you will have pitched, received feedback, passed certification, and gone live.</p>`,
+checks:["The real opportunity is owning outcomes, not selling software.","The early mover edge is real but won't stay open forever.","This program takes me from knowing ClickUp to selling and supporting it as a business."],
+micros:[],
+reveals:[]
+},
+2:{
+lede:"If a prospect asks what they get buying through you versus direct, you need a crisp answer. No fumbling.",
+scenario:{label:"Scenario",text:'A prospect asks: "What\'s the difference between buying ClickUp myself versus buying through you?" This lesson is your answer.'},
+body:`<p>You're selling the most powerful version of ClickUp that exists, at a price your customer can't get anywhere else, with you as the dedicated expert attached. The plan is <strong>Enterprise Platinum</strong>.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Feature</th><th>What Your Customer Gets</th></tr></thead>
+<tbody>
+<tr><td>AI Credits</td><td>5,000 per user / month</td></tr>
+<tr><td>AI Essentials (Brain, Writing, Web Search)</td><td>Unlimited (fair use)</td></tr>
+<tr><td>AI Automation</td><td>Unlimited</td></tr>
+<tr><td>AI Time Blocking</td><td>Included</td></tr>
+<tr><td>Ambient Answers (Answers Agent)</td><td>Included</td></tr>
+<tr><td>Autopilot Agents</td><td>Included</td></tr>
+<tr><td>Super Agents</td><td>Included (consumes AI credits)</td></tr>
+<tr><td>Image Generation</td><td>Included</td></tr>
+<tr><td>AI Notetaker</td><td>Unlimited</td></tr>
+<tr><td>Email</td><td>Unlimited</td></tr>
+<tr><td>Automations</td><td>Unlimited (1M+)</td></tr>
+<tr><td>Connected Search</td><td>Included</td></tr>
+<tr><td>Talk to Text</td><td>Unlimited</td></tr>
+<tr><td>Enterprise Permissions & Governance</td><td>Included</td></tr>
+</tbody></table></div>
+<h4>What's deliberately excluded:</h4>
+<div class="table-wrap"><table>
+<thead><tr><th>Feature</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Expert Services (228 hrs/yr)</td><td>Because YOU are the expert</td></tr>
+<tr><td>Premium Support</td><td>Because YOU are the support</td></tr>
+</tbody></table></div>
+<h3>Your pricing</h3>
+<p>Enterprise Platinum lists at <strong>$75/user/month</strong> direct. As a certified MSP, you purchase at a 30% discount: <strong>$52.50/user/month</strong>.</p>
+<div class="callout"><p><strong>You must pass that discount through to your customer. You cannot mark up the software.</strong></p></div>
+<h4>Why customers buy through you:</h4>
+<p><strong>Direct:</strong> $75/user/month + impersonal support queue + shared Expert Services pool.</p>
+<p><strong>Through you:</strong> $52.50/user/month + a dedicated expert who built the workspace, knows the business, and answers the phone.</p>
+<p><em>Better price AND better experience.</em></p>`,
+checks:["I know every feature in the table so I never say 'let me check' on plan questions.","AI credits: 5,000/user/month covers the vast majority of use cases.","Connected Search means workspace plus connected third-party apps.","The price is $52.50/user/month. That's what I quote. No modifications."],
+reveals:[
+{q:'Scenario A: "I can get the Business plan for $12/user. Why would I pay $52.50?"',a:'Different product entirely. Business doesn\'t include AI Notetaker, Connected Search, unlimited automations, enterprise permissions, or 5,000 AI credits/month. Plus they have to figure out implementation alone. For $52.50 they get the full enterprise AI platform AND a dedicated expert.'},
+{q:'Scenario B: "Can you throw in a discount since I\'m committing to 25 seats?"',a:'The software price cannot be modified. $52.50 is fixed. But you CAN position your services value, offer implementation packages, and remind them they\'re already getting 30% off list price.'}
+],
+micros:[
+{q:"What is the customer-facing price per user per month for the MSP SKU?",opts:["$75.00","$60.00","$52.50","$48.00"],correct:2,good:"Correct. $52.50 is the number.",bad:"Not quite. Try again."},
+{q:"A prospect asks if they'll have access to AI Notetaker. Your answer?",opts:["It's an add-on they need separately","Yes, unlimited, included in the plan","Only for admins","Let me check and get back to you"],correct:1,good:"Correct. Unlimited, included.",bad:"Not quite. Try again."},
+{q:"A prospect asks for a 10% discount. What's the correct response?",opts:["Offer 5% as a compromise","Explain you cannot modify pricing but highlight existing value","Contact ClickUp to request approval","Add the discount and absorb it yourself"],correct:1,good:"Correct. You cannot modify pricing.",bad:"Not quite. Try again."}
+]
+},
+3:{
+lede:"If you don't understand the money, you'll say dumb things on calls and price your services wrong.",
+scenario:{label:"Scenario",text:"You just closed your first customer. 8 seats, signed yesterday. You check your bank account a week later and... nothing. When do you actually get paid? How much? And what could cause you to owe money back?"},
+body:`<h3>Stream 1: Revenue share (recurring)</h3>
+<p>ClickUp pays you back 20% of what you remit on every customer, every quarter, for as long as they stay subscribed.</p>
+<div class="table-wrap"><table>
+<thead><tr><th></th><th>Per user/month</th><th>10-seat/month</th><th>10-seat/year</th></tr></thead>
+<tbody>
+<tr><td>Customer pays you</td><td>$52.50</td><td>$525</td><td>$6,300</td></tr>
+<tr><td>You remit to ClickUp</td><td>$52.50</td><td>$525</td><td>$6,300</td></tr>
+<tr><td>ClickUp pays you back (20%)</td><td>$10.50</td><td>$105</td><td><strong>$1,260</strong></td></tr>
+</tbody></table></div>
+<p><strong>That $1,260 recurs every year</strong> as long as the customer stays.</p>
+<h3>Stream 2: Your services (you keep 100%)</h3>
+<p>Implementation, training, workspace buildout, ongoing support. ClickUp takes no cut. Most MSPs charge $3K-$8K for setup. Those running managed services earn more over time.</p>
+<div class="table-wrap"><table>
+<thead><tr><th></th><th>Year 1</th><th>Year 2</th><th>Year 3</th></tr></thead>
+<tbody>
+<tr><td>Rev share (10 seats)</td><td>$1,260</td><td>$1,260</td><td>$1,260</td></tr>
+<tr><td>Setup + training</td><td>$5,000</td><td>—</td><td>—</td></tr>
+<tr><td>Managed support ($500/mo)</td><td>$6,000</td><td>$6,000</td><td>$6,000</td></tr>
+<tr><td><strong>Total from one customer</strong></td><td><strong>$12,260</strong></td><td><strong>$7,260</strong></td><td><strong>$7,260</strong></td></tr>
+</tbody></table></div>
+<h3>Deal eligibility</h3>
+<ul>
+<li>Customer must NOT already be in ClickUp's sales pipeline</li>
+<li>Submit through the MSP Program portal</li>
+<li>30-day window on expansion deals</li>
+</ul>
+<h3>Payment</h3>
+<ul>
+<li>Quarterly via ACH</li>
+<li>$250 minimum per quarter (rolls forward if not met)</li>
+<li>You need ~2-3 active customers for consistent payouts</li>
+</ul>
+<div class="callout"><p><strong>The 90-day rule:</strong> Customer churns within 90 days? You reimburse the full revenue share paid on that deal. A bad-fit customer costs you money.</p></div>`,
+checks:["I earn $10.50/user/month in rev share, recurring as long as the customer stays.","Payout is quarterly via ACH with a $250 minimum threshold.","If a customer churns within 90 days, I reimburse the full rev share.","Deals must be submitted through the portal and the customer can't already be in pipeline."],
+reveals:[
+{q:"Scenario A: A prospect on ClickUp free says a ClickUp sales rep emailed them last month. Is this deal eligible?",a:"Probably not. If ClickUp already has them in pipeline, the deal won't qualify. Submit through the portal and let ClickUp confirm eligibility before investing weeks selling."},
+{q:"Scenario B: You closed a 5-seat customer 60 days ago. They just told you they're canceling. What happens?",a:"If they churn within 90 days, you reimburse the full revenue share. That's ~$315 you owe back. Try to save the deal first: can they reduce seats? Offer a lighter service tier? Prevention is cheaper than clawback."}
+],
+micros:[
+{q:"You have one 10-seat customer active for 4 months. Accrued rev share is $315. When do you get paid?",opts:["Immediately","End of the quarter via ACH","After 12 months","Never, it's below the minimum"],correct:1,good:"Right. Quarterly via ACH, and $315 clears the $250 threshold.",bad:"Not quite. Try again."},
+{q:"A customer churns 45 days after signing. What happens?",opts:["Nothing, you keep your rev share","Future rev share is reduced proportionally","You reimburse the full revenue share paid on that deal","ClickUp absorbs the loss"],correct:2,good:"Exactly. Full clawback inside 90 days.",bad:"Not quite. Try again."},
+{q:"A prospect is a clear bad fit with tiny budget and likely to churn fast. Smart move?",opts:["Close them now, revenue is revenue","Walk away or qualify harder","Close them and charge more to offset risk","Close them and hope they make it past 90 days"],correct:1,good:"Correct. A bad-fit customer literally costs you money.",bad:"Not quite. Try again."}
+]
+},
+4:{
+lede:"Good discovery call, clear fit, customer wants to move. If you skip the process, you can screw yourself.",
+scenario:{label:"Scenario",text:"You just had a great call with a 15-person agency on ClickUp free. They're ready. What's your next step before you invest another hour?"},
+body:`<h3>The transaction flow</h3>
+<ol>
+<li><strong>You find the customer.</strong> Network, outbound, content, or reputation.</li>
+<li><strong>Submit through the portal.</strong> Log the opportunity: customer name, subscription details, seat count.</li>
+<li><strong>ClickUp confirms eligibility.</strong> Customer must not be in pipeline already.</li>
+<li><strong>You close the customer.</strong> Pitch, demo, handle objections, process order at $52.50/user/month.</li>
+<li><strong>Customer signs the End User Agreement.</strong> Required before accessing the product.</li>
+<li><strong>You provision the workspace.</strong> Setup, billing, onboarding, all you.</li>
+<li><strong>Rev share accrues.</strong> 20% back, quarterly.</li>
+</ol>
+<h3>Your co-branded landing page</h3>
+<p>Each MSP gets a custom, co-branded page hosted by ClickUp. It highlights your skills, links to your site, serves as the transaction page, and attributes sales to you.</p>
+<h3>What you own operationally</h3>
+<ul>
+<li>Billing (you invoice, you collect)</li>
+<li>Workspace provisioning (you set it up, manage it)</li>
+<li>First-line support (customer calls you, not ClickUp)</li>
+<li>Reporting platform issues to ClickUp when the product itself breaks</li>
+</ul>`,
+checks:["Leads must not already be in ClickUp's pipeline.","Expansion deals must close within the 30-day window.","I cannot modify ClickUp's pricing, terms, or End User Agreement.","I cannot represent authority to bind ClickUp outside an executed order."],
+reveals:[
+{q:"Scenario A: A free-plan prospect says no one from ClickUp has contacted them. Do you submit?",a:"Yes. Being on free doesn't mean they're in pipeline. Submit immediately and let ClickUp confirm. Don't wait."},
+{q:"Scenario B: Your live customer wants to add 15 seats two months later. Process?",a:"Submit the expansion through the portal right away. 30-day window to close. Same partner pricing. Rev share extends to new seats."}
+],
+micros:[
+{q:"First thing you do when a prospect wants to buy?",opts:["Send your landing page link","Submit the deal through the MSP Program portal","Have them sign your services agreement","Set up their workspace"],correct:1,good:"Right. Register the deal first.",bad:"Not quite. Try again."},
+{q:"You submitted an expansion deal. How long to close it?",opts:["7 days","14 days","30 days","No time limit"],correct:2,good:"Correct. 30 days.",bad:"Not quite. Try again."}
+]
+},
+5:{
+lede:"If you don't know where the line is, you'll over-promise, under-serve, or both.",
+scenario:{label:"Scenario",text:"It's 9pm Thursday. Your customer messages that a weekly automation stopped firing and the pipeline board is wrong. You didn't build it. They did. What's your move?"},
+body:`<h3>ClickUp owns:</h3>
+<ul>
+<li>The platform (uptime, bugs, features, roadmap)</li>
+<li>Billing and license management</li>
+<li>Platform-level support when the product itself breaks</li>
+<li>Brand, legal, and compliance framework</li>
+</ul>
+<h3>You own:</h3>
+<ul>
+<li>The client relationship</li>
+<li>Implementation and workspace setup</li>
+<li>Training and onboarding</li>
+<li>Ongoing support for everything you build or configure</li>
+<li>Agent creation, maintenance, troubleshooting</li>
+<li>Renewals and expansion (your economics depend on retention)</li>
+</ul>
+<div class="callout"><p><strong>The hard truth:</strong> If a workspace is misconfigured, or an automation you set up breaks, or they need help at 10pm, that's your layer. ClickUp support helps with platform bugs. They won't troubleshoot your implementations.</p></div>
+<p><strong>Opening scenario answer:</strong> The automation broke. Your customer set it up, not you. But you're their MSP and first-line support is your job. Diagnose whether it's a platform bug or config issue. If config, you fix it. If platform, you report it to ClickUp and keep the customer informed.</p>`,
+checks:["I own the customer relationship, billing, provisioning, and first-line support.","ClickUp owns the platform, pricing, terms, and End User Agreement.","If my cert lapses, I lose rev share on ALL customers including existing ones.","I must maintain my own paid ClickUp workspace for the life of the agreement."],
+reveals:[
+{q:"Scenario A: A customer wants you to promise 99.9% uptime in your service agreement.",a:"You can't make platform uptime promises on ClickUp's behalf. Commit to your own response times and support standards. Platform uptime belongs to ClickUp's official terms."},
+{q:"Scenario B: A product update changes how a custom field behaves and three customers depend on it.",a:"Test it, assess impact, communicate proactively to affected customers, report if it's a bug, fix configs if needed. That's the job and the leverage."}
+],
+micros:[
+{q:"Customer reports ClickUp search returning wrong results. Correct action?",opts:["Fix it yourself in workspace settings","Tell them to contact ClickUp directly","Report the issue to ClickUp on their behalf and keep the customer informed","Ignore it until ClickUp announces a fix"],correct:2,good:"Correct. You own the relationship even when ClickUp owns the fix.",bad:"Not quite. Try again."},
+{q:"If your certification lapses, you only lose rev share on new deals. True or false?",opts:["True","False"],correct:1,good:"Correct. False. You lose rev share on your entire book.",bad:"Not quite. Try again."}
+]
+},
+6:{
+lede:"You spend 40 hours building something good and then realize you never thought through who owns it.",
+scenario:{label:"Scenario",text:"You build a custom Super Agent for a client's onboarding workflow. It works great. Then you wonder: does ClickUp own this now? The answer depends on how you structured the work."},
+body:`<h3>What the IP clause means</h3>
+<p>ClickUp gets a broad, perpetual license to anything you produce <strong>"in furtherance of this Agreement."</strong> That means program-related work: marketing assets, demo environments, portal showcases, certification content.</p>
+<p><strong>The critical carve-out:</strong> Anything you build independently for clients under <strong>your own services agreement</strong> is explicitly excluded. Implementation, consulting, agents delivered under your own SOW stay yours.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>What you build</th><th>Who has rights</th></tr></thead>
+<tbody>
+<tr><td>Demo workspace for the MSP portal</td><td>ClickUp (in furtherance of agreement)</td></tr>
+<tr><td>Marketing content using co-branded template</td><td>ClickUp</td></tr>
+<tr><td>Custom agent for a client under your SOW</td><td>You</td></tr>
+<tr><td>Workspace template sold to multiple clients</td><td>You (independent services)</td></tr>
+<tr><td>Training materials for ClickUp certification</td><td>ClickUp</td></tr>
+<tr><td>Training materials for your own client onboarding</td><td>You</td></tr>
+</tbody></table></div>
+<h3>How to protect yourself</h3>
+<ol>
+<li><strong>Always use your own SOW with clients.</strong> Don't deliver under the MSP Program umbrella.</li>
+<li><strong>Keep program work and client work separated.</strong></li>
+<li><strong>Don't mix ClickUp confidential info into your own IP.</strong></li>
+<li><strong>When in doubt, keep it under your own SOW.</strong></li>
+</ol>`,
+checks:["Program-related work falls under ClickUp's broad license.","Client work under my own SOW is explicitly carved out and stays mine.","Ownership depends on the delivery context, not just the artifact.","My own services agreement is not optional; it's my protection."],
+reveals:[
+{q:"Scenario A: ClickUp wants to feature your client-built agent as an MSP Spotlight. What should you think about?",a:"If you contribute the build into program context, it may fall under ClickUp's license. Exposure might be worth it, but don't trade IP control blindly. You can share a case study without giving the actual agent build."},
+{q:"Scenario B: You built a generic onboarding agent you want to sell to multiple clients. How to protect it?",a:"Deliver under your own SOW as a Channel Partner Service. Never contribute it to program resources. Keep it yours."}
+],
+micros:[
+{q:"You build a workspace template to sell to multiple clients. How do you protect ownership?",opts:["Ask ClickUp for written permission","Deliver under your own SOW as a Channel Partner Service","Don't tell ClickUp about it","Trademark it first"],correct:1,good:"Correct. Your own SOW is the cleanest protection.",bad:"Not quite. Try again."},
+{q:"ClickUp asks you to create a training video for certification. Who owns it?",opts:["You, because you created it","Shared ownership","ClickUp has a broad license to use, modify, and distribute it","Neither"],correct:2,good:"Correct. Program work = ClickUp gets the license.",bad:"Not quite. Try again."}
+]
+},
+7:{
+lede:"This is the part people ignore right until they say something reckless on a call and nuke their status.",
+scenario:{label:"Scenario",text:'A prospect asks: "Can you guarantee ClickUp won\'t raise the price next year?" You want the deal. The wrong answer can get you removed from the program.'},
+body:`<h3>What you CAN do:</h3>
+<ul>
+<li>Describe Enterprise Platinum features accurately</li>
+<li>Quote the price: $52.50/user/month</li>
+<li>Set your own services pricing</li>
+<li>Use approved MSP messaging and reference your certification</li>
+<li>Create your own marketing content (subject to brand guidelines)</li>
+</ul>
+<h3>What you CANNOT do:</h3>
+<ul>
+<li><strong>Promise features that don't exist.</strong> If it's not shipped, don't sell it.</li>
+<li><strong>Share roadmap or development plans.</strong> Confidential. Period.</li>
+<li><strong>Guarantee uptime or SLAs on ClickUp's behalf.</strong></li>
+<li><strong>Disclose your partner discount publicly.</strong></li>
+<li><strong>Modify the End User Agreement or pricing.</strong></li>
+<li><strong>Represent yourself as a ClickUp employee.</strong></li>
+<li><strong>Communicate outdated product info.</strong></li>
+</ul>
+<h4>The "when in doubt" rule:</h4>
+<p>"Let me confirm that and get back to you." Never guess.</p>
+<h3>Staying certified</h3>
+<ul>
+<li><strong>Annual recertification.</strong> Complete updated training or your cert lapses.</li>
+<li><strong>Active paid workspace.</strong> Maintain your own ClickUp subscription.</li>
+<li><strong>Good standing.</strong> No material breaches, no compliance violations, no delinquent payments.</li>
+</ul>
+<h3>Termination rights</h3>
+<p>ClickUp can end the agreement immediately for material breach, lapsed cert, or to prevent harm. Either party can terminate for convenience with 30 days written notice.</p>
+<p><strong>Opening scenario answer:</strong> "I can't make guarantees about future pricing. Your current rate is locked for your subscription term, and I'll always keep you informed about changes. Let me show you the ROI at today's price."</p>`,
+checks:["Never guess. Confirm first when unsure.","Don't disclose roadmap, partner discount, or confidential info publicly.","Don't sell future features as if they're live.","Recertification is annual and non-negotiable.","Termination kills rev share on my full book, not just future deals."],
+reveals:[
+{q:'Scenario A: A prospect asks if a rumored native CRM is launching next quarter. You\'ve heard the rumor.',a:'You say you can only speak to what\'s live today. Rumors, roadmap whispers, beta gossip: none of that is safe to sell from.'},
+{q:'Scenario B: You want to write a blog post mentioning your "significant partner discount."',a:'No. You can say $52.50/user/month and that buying through you is cheaper than direct. You cannot publicly discuss the discount structure or percentage.'}
+],
+micros:[
+{q:"A prospect asks about a feature announced publicly but not shipped. Correct approach?",opts:["Tell them it's coming soon","Only discuss features that are live and available","Show the announcement and let them decide","Confirm it to close the deal faster"],correct:1,good:"Correct. Live features only.",bad:"Not quite. Try again."},
+{q:"Which would NOT put your certification at risk?",opts:["Letting recertification lapse","Offering a prospect a 10% discount","Creating your own marketing content using the program logo","Telling a prospect you work for ClickUp"],correct:2,good:"Correct. Your own compliant marketing content is fine.",bad:"Not quite. Try again."}
+]
+},
+8:{
+lede:"Module 1 is groundwork. The point is to move into positioning, packaging, selling, and going live.",
+scenario:{label:"Path forward",text:"You're not done when this module ends. You're just done with the foundation."},
+body:`<h3>Your path from here</h3>
+<ul>
+<li><strong>Module 2:</strong> What is Convergence and How to Sell It. How to position ClickUp in 2026 and why buying through an MSP beats direct.</li>
+<li><strong>Module 3:</strong> Building Your Business Model. Design your service offering, SLA, and pricing.</li>
+<li><strong>Module 4:</strong> Sell It, Live Capstone. Mock sales sessions, feedback, pass certification, unlock your custom URL and first SKUs.</li>
+</ul>
+<p>After certification: submit recordings of your first 2 real sales calls for AI-graded feedback on positioning and objection handling.</p>`,
+checks:[],
+reveals:[],
+micros:[]
+}
+};
+
+const KC_QUESTIONS = [
+{q:"What plan are MSPs selling to their customers?",opts:["Enterprise Plus with AI add-ons","Enterprise Platinum minus Expert Services and Premium Support","Business plan with Connected Search upgrade","Enterprise Platinum (full package, nothing removed)"],correct:1,good:"Correct.",bad:"Wrong. Enterprise Platinum minus Expert Services and Premium Support."},
+{q:"Why are Expert Services and Premium Support excluded from the MSP SKU?",opts:["To make the SKU cheaper for ClickUp","Because SMBs don't need support","Because the MSP IS the services and support layer","Those features haven't launched yet"],correct:2,good:"Correct.",bad:"Wrong. The MSP is the services and support layer."},
+{q:"How many AI credits per user per month does Enterprise Platinum include?",opts:["1,500","10,000","Unlimited","5,000"],correct:3,good:"Correct. 5,000.",bad:"Wrong. The answer is 5,000."},
+{q:"A workspace automation you configured breaks at 9pm. Who's responsible?",opts:["ClickUp Premium Support","You, the MSP","The customer's IT team","Nobody until business hours"],correct:1,good:"Correct.",bad:"Wrong. If you're the MSP, that's your layer."},
+{q:'What does "unlimited with fair use" mean?',opts:["Hard cap they'll hit quickly","Unlimited for normal business use; cap prevents abuse","Unlimited only for first 90 days","Need to purchase more credits after the cap"],correct:1,good:"Correct.",bad:"Wrong. It's unlimited for normal use; the cap only prevents abuse."},
+{q:"Which is NOT included in the MSP SKU?",opts:["AI Notetaker","Connected Search","Premium Support","Autopilot Agents"],correct:2,good:"Correct. Premium Support is excluded.",bad:"Wrong. Premium Support is excluded."},
+{q:"10-seat customer at $52.50/user/month. Approximate annual rev share?",opts:["$630","$1,260","$6,300","$12,600"],correct:1,good:"Correct. $1,260.",bad:"Wrong. $52.50 × 10 × 12 = $6,300. 20% = $1,260."},
+{q:"What must you complete to unlock your custom URL and first SKUs?",opts:["Submit a written business plan","Sell your first customer","Pass the Module 4 live capstone","Complete a 30-day probation"],correct:2,good:"Correct.",bad:"Wrong. The gate is the Module 4 live capstone."},
+{q:"Which best describes the MSP model?",opts:["Refer clients to ClickUp for a commission","Resell at partner price as a complete solution with your services on top","Buy licenses cheap, resell at higher price","Work as a contracted ClickUp consultant"],correct:1,good:"Correct.",bad:"Wrong. You resell at partner price as a complete solution with your services on top."}
+];
+
+// RENDER
+function render(){
+renderNav();
+renderContent();
+updateProgress();
+saveState();
+}
+
+function renderNav(){
+const nav = document.getElementById('lessonNav');
+let html = '';
+LESSONS.forEach((l,i) => {
+if(l.isKC){
+html += '<div class="nav-divider">Assessment</div>';
+}
+const isCompleted = state.completed.includes(l.id);
+const isActive = state.current === l.id;
+const isLocked = l.id > state.frontier;
+let iconHtml;
+if(isCompleted && !isActive) iconHtml = '<div class="nav-icon check">✓</div>';
+else if(isLocked) iconHtml = '<div class="nav-icon lock">🔒</div>';
+else iconHtml = `<div class="nav-icon num">${l.isKC ? '✎' : l.id}</div>`;
+const cls = [isActive?'active':'',isCompleted&&!isActive?'completed':'',isLocked?'locked':''].filter(Boolean).join(' ');
+html += `<button class="nav-item ${cls}" data-nav="${l.id}" ${isLocked?'tabindex="-1"':''}>${iconHtml}<span class="nav-text">${l.title}</span>${isLocked?'<span class="nav-tooltip">Complete the previous lesson to unlock</span>':''}</button>`;
+});
+nav.innerHTML = html;
+nav.querySelectorAll('.nav-item').forEach(btn => {
+btn.addEventListener('click', () => {
+const id = +btn.dataset.nav;
+if(id <= state.frontier){
+state.current = id;
+render();
+window.scrollTo({top:0,behavior:'smooth'});
+}
+});
+});
+}
+
+function updateProgress(){
+const count = state.completed.length;
+document.getElementById('pCount').textContent = count;
+document.getElementById('pFill').style.width = Math.round((count/TOTAL_STEPS)*100)+'%';
+if(!storageAvailable) document.getElementById('resetBtn').style.display='none';
+}
+
+function renderContent(){
+const root = document.getElementById('root');
+if(state.current === 9){
+root.innerHTML = renderKC();
+attachKC();
+} else {
+root.innerHTML = renderLesson(state.current);
+attachLesson(state.current);
+}
+}
+
+function renderLesson(id){
+const c = CONTENT[id];
+const l = LESSONS[id-1];
+const ld = getLessonData(id);
+let html = `<article class="lesson visible">`;
+html += `<div class="eyebrow">${l.eyebrow}</div>`;
+html += `<h1 class="lesson-title">${l.title}</h1>`;
+if(c.lede) html += `<p class="lede">${c.lede}</p>`;
+if(c.scenario) html += `<section class="scenario"><div class="scenario-label">${c.scenario.label}</div><p>${c.scenario.text}</p></section>`;
+html += `<div class="section">${c.body}</div>`;
+// Reveals
+if(c.reveals && c.reveals.length){
+html += `<div class="section"><h3>What would you do?</h3><div class="reveal-group">`;
+c.reveals.forEach((r,i) => {
+html += `<div class="reveal" data-reveal="${i}"><button class="reveal-toggle"><span>${r.q}</span><span class="chevron">⌄</span></button><div class="reveal-body"><div class="reveal-content"><strong>Answer:</strong> ${r.a}</div></div></div>`;
+});
+html += `</div></div>`;
+}
+// Checkboxes
+if(c.checks && c.checks.length){
+html += `<div class="section"><h3>Key Takeaways</h3><div class="checkbox-group" id="cbGroup">`;
+c.checks.forEach((ck,i) => {
+const checked = ld.checks.includes(i);
+html += `<button class="cb-item${checked?' checked':''}" data-cb="${i}" role="checkbox" aria-checked="${checked}"><div class="cb-box">✓</div><div class="cb-label">${ck}</div></button>`;
+});
+html += `</div></div>`;
+}
+// Micro-checks
+if(c.micros && c.micros.length){
+html += `<div class="section quiz-block"><h3>Micro-check</h3>`;
+c.micros.forEach((m,qi) => {
+const passed = ld.microPassed.includes(qi);
+html += `<div class="quiz-q" data-micro="${qi}"><h4>${m.q}</h4><div class="quiz-options">`;
+m.opts.forEach((o,oi) => {
+const lockedCls = passed && oi===m.correct ? 'correct locked' : passed ? 'locked' : '';
+html += `<button class="quiz-opt ${lockedCls}" data-opt="${oi}"${passed?' disabled':''}><span class="dot"></span><span>${o}</span></button>`;
+});
+html += `</div><div class="quiz-feedback${passed?' show good':''}">${passed?m.good:''}</div></div>`;
+});
+html += `</div>`;
+}
+// Gate hint
+const gateStatus = getGateStatus(id);
+const hintText = getHintText(id, gateStatus);
+html += `<div class="gate-hint${hintText?' show':''}" id="gateHint">${hintText}</div>`;
+// Nav
+const nextLabel = id===8 ? 'Start the Knowledge Check →' : id<8 ? `Next: ${LESSONS[id].title} →` : '';
+html += `<div class="nav-actions">`;
+html += `<button class="nav-btn secondary" ${id===1?'disabled':''} id="prevBtn">← Previous</button>`;
+html += `<button class="nav-btn primary" id="nextBtn" ${!gateStatus.satisfied?'disabled':''}>${nextLabel}</button>`;
+html += `</div></article>`;
+return html;
+}
+
+function getGateStatus(id){
+const c = CONTENT[id];
+const l = LESSONS[id-1];
+const ld = getLessonData(id);
+if(!l.hasChecks && !l.hasMicro) return {satisfied:true,needsChecks:false,needsMicro:false};
+const allChecked = !c.checks.length || ld.checks.length >= c.checks.length;
+const allMicro = !c.micros.length || ld.microPassed.length >= c.micros.length;
+return {satisfied: allChecked && allMicro, needsChecks: !allChecked, needsMicro: !allMicro};
+}
+
+function getHintText(id, gs){
+if(gs.satisfied) return '';
+if(gs.needsChecks && gs.needsMicro) return 'Check all takeaway boxes and pass the micro-check to continue.';
+if(gs.needsChecks) return 'Check all takeaway boxes to continue.';
+if(gs.needsMicro) return 'Pass the micro-check to continue.';
+return '';
+}
+
+function attachLesson(id){
+const c = CONTENT[id];
+const ld = getLessonData(id);
+// Reveals
+document.querySelectorAll('.reveal').forEach(el => {
+el.querySelector('.reveal-toggle').addEventListener('click', () => el.classList.toggle('open'));
+el.querySelector('.reveal-toggle').addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){e.preventDefault();el.classList.toggle('open');}});
+});
+// Checkboxes
+document.querySelectorAll('.cb-item').forEach(el => {
+el.addEventListener('click', () => {
+const idx = +el.dataset.cb;
+if(ld.checks.includes(idx)){ld.checks = ld.checks.filter(x=>x!==idx); el.classList.remove('checked'); el.setAttribute('aria-checked','false');}
+else {ld.checks.push(idx); el.classList.add('checked'); el.setAttribute('aria-checked','true');}
+updateGate(id);
+saveState();
+});
+el.addEventListener('keydown', e => {if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click();}});
+});
+// Micro-checks (retry until correct)
+document.querySelectorAll('.quiz-q').forEach(qEl => {
+const qi = +qEl.dataset.micro;
+if(ld.microPassed.includes(qi)) return;
+const m = c.micros[qi];
+qEl.querySelectorAll('.quiz-opt').forEach(btn => {
+btn.addEventListener('click', () => {
+if(ld.microPassed.includes(qi)) return;
+const oi = +btn.dataset.opt;
+const fb = qEl.querySelector('.quiz-feedback');
+// Clear previous wrong styling
+qEl.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('incorrect'));
+if(oi === m.correct){
+ld.microPassed.push(qi);
+qEl.querySelectorAll('.quiz-opt').forEach(b => {b.classList.add('locked');b.disabled=true;});
+btn.classList.add('correct');
+fb.textContent = m.good;
+fb.className = 'quiz-feedback show good';
+updateGate(id);
+saveState();
+} else {
+btn.classList.add('incorrect');
+fb.textContent = m.bad;
+fb.className = 'quiz-feedback show bad';
+}
+});
+btn.addEventListener('keydown', e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();btn.click();}});
+});
+});
+// Nav
+document.getElementById('prevBtn').addEventListener('click', () => { if(id>1){state.current=id-1;render();window.scrollTo({top:0,behavior:'smooth'});}});
+document.getElementById('nextBtn').addEventListener('click', () => {
+if(!getGateStatus(id).satisfied) return;
+if(!state.completed.includes(id)) state.completed.push(id);
+const next = id < 8 ? id+1 : 9;
+state.frontier = Math.max(state.frontier, next);
+state.current = next;
+render();
+window.scrollTo({top:0,behavior:'smooth'});
+});
+}
+
+function updateGate(id){
+const gs = getGateStatus(id);
+const btn = document.getElementById('nextBtn');
+const hint = document.getElementById('gateHint');
+if(gs.satisfied){btn.disabled=false; hint.classList.remove('show'); hint.textContent='';}
+else {btn.disabled=true; hint.textContent=getHintText(id,gs); hint.classList.add('show');}
+}
+
+// KNOWLEDGE CHECK
+function renderKC(){
+const ld = getLessonData(9);
+if(!ld.answers) ld.answers = {};
+let html = `<article class="lesson visible">`;
+html += `<div class="eyebrow">Final Assessment</div>`;
+html += `<h1 class="lesson-title">Knowledge Check</h1>`;
+html += `<p class="lede">9 questions. Pass mark: 7 of 9. One attempt per question.</p>`;
+const answered = Object.keys(ld.answers).length;
+html += `<div class="kc-scorebar"><span class="count">${answered} / 9</span> answered</div>`;
+html += `<div class="quiz-block">`;
+KC_QUESTIONS.forEach((q,qi) => {
+const ans = ld.answers[qi];
+const isAnswered = ans !== undefined;
+html += `<div class="quiz-q" data-kcq="${qi}"><h4>${qi+1}. ${q.q}</h4><div class="quiz-options">`;
+q.opts.forEach((o,oi) => {
+let cls = '';
+if(isAnswered){
+cls = 'locked';
+if(oi===q.correct) cls += ' correct';
+if(oi===ans && ans!==q.correct) cls += ' incorrect';
+}
+html += `<button class="quiz-opt ${cls}" data-opt="${oi}"${isAnswered?' disabled':''}><span class="dot"></span><span>${o}</span></button>`;
+});
+let fbCls='quiz-feedback', fbText='';
+if(isAnswered){
+if(ans===q.correct){fbCls+=' show good';fbText=q.good;}
+else{fbCls+=' show bad';fbText=q.bad;}
+}
+html += `</div><div class="${fbCls}">${fbText}</div></div>`;
+});
+html += `</div>`;
+// Result
+if(answered === 9){
+const score = Object.entries(ld.answers).filter(([k,v])=>v===KC_QUESTIONS[+k].correct).length;
+const passed = score >= KC_PASS;
+html += `<div class="kc-result ${passed?'pass':'fail'}" style="display:block"><h3>${passed?'🎉 You passed!':'Not quite.'}</h3><p>You scored ${score} of 9.${passed?' Module 1 complete.':` You need ${KC_PASS} to pass.`}</p>${passed?'':'<button id="kcRetry">Reset the check</button>'}</div>`;
+if(passed && !state.completed.includes(9)){
+state.completed.push(9);
+LESSONS.forEach(l=>{if(!state.completed.includes(l.id))state.completed.push(l.id);});
+saveState();
+}
+}
+// Nav back
+html += `<div class="nav-actions"><button class="nav-btn secondary" id="prevBtn">← Previous</button><div></div></div>`;
+html += `</article>`;
+return html;
+}
+
+function attachKC(){
+const ld = getLessonData(9);
+if(!ld.answers) ld.answers = {};
+document.querySelectorAll('.quiz-q[data-kcq]').forEach(qEl => {
+const qi = +qEl.dataset.kcq;
+if(ld.answers[qi] !== undefined) return;
+qEl.querySelectorAll('.quiz-opt').forEach(btn => {
+btn.addEventListener('click', () => {
+if(ld.answers[qi] !== undefined) return;
+const oi = +btn.dataset.opt;
+ld.answers[qi] = oi;
+const q = KC_QUESTIONS[qi];
+qEl.querySelectorAll('.quiz-opt').forEach(b => {
+b.classList.add('locked');b.disabled=true;
+if(+b.dataset.opt===q.correct) b.classList.add('correct');
+});
+if(oi!==q.correct) btn.classList.add('incorrect');
+const fb = qEl.querySelector('.quiz-feedback');
+if(oi===q.correct){fb.textContent=q.good;fb.className='quiz-feedback show good';}
+else{fb.textContent=q.bad;fb.className='quiz-feedback show bad';}
+saveState();
+// Update scorebar and check completion
+const answered = Object.keys(ld.answers).length;
+document.querySelector('.kc-scorebar .count').textContent = `${answered} / 9`;
+if(answered===9){
+setTimeout(()=>{render();},400);
+}
+});
+btn.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();btn.click();}});
+});
+});
+// Retry
+const retryBtn = document.getElementById('kcRetry');
+if(retryBtn){
+retryBtn.addEventListener('click',()=>{
+ld.answers={};
+saveState();
+render();
+window.scrollTo({top:0,behavior:'smooth'});
+});
+}
+// Prev
+document.getElementById('prevBtn').addEventListener('click',()=>{state.current=8;render();window.scrollTo({top:0,behavior:'smooth'});});
+}
+
+// MOBILE
+const hamburger = document.getElementById('hamburger');
+const sidebar = document.getElementById('sidebar');
+const scrim = document.getElementById('scrim');
+hamburger.addEventListener('click',()=>{sidebar.classList.toggle('open');scrim.classList.toggle('open');});
+scrim.addEventListener('click',()=>{sidebar.classList.remove('open');scrim.classList.remove('open');});
+
+// RESET
+document.getElementById('resetBtn').addEventListener('click',()=>{
+if(confirm('Reset all progress? This cannot be undone.')){resetState();}
+});
+
+// INIT
+loadState();
+render();
+
+})();
+</script>
+
+</div></cu-root><script type="importmap">{ "imports": {"./main.js":"./main-c363b62bcb.js","./common.js":"./common-4e0365a7b9.js","./startRecording.js":"./startRecording-86d3a2d8e4.js","./profiler.js":"./profiler-291e0a6e82.js","./rolldown-runtime.js":"./rolldown-runtime-2681143a8f.js"} }</script><div class="design-ui-credit" aria-hidden="true" style="opacity: 0;">💜 by ClickUp Brain</div></body></html>
